@@ -3,7 +3,11 @@ package calculator;
 
 import org.joda.time.LocalDate;
 
+import java.text.DecimalFormat;
+
 public class CalculatorResult {
+
+    private static final DecimalFormat DECIMAL_FORMAT = new DecimalFormat("#,##0.00");
 
     private final LocalDate finalPaymentDate;
     private final double totalPayments;
@@ -29,48 +33,24 @@ public class CalculatorResult {
         this.meanPayment = meanPayment;
     }
 
-    public LocalDate getFinalPaymentDate() {
-        return finalPaymentDate;
-    }
-
     public double getTotalPayments() {
         return totalPayments;
-    }
-
-    public double getInterestPaid() {
-        return interestPaid;
-    }
-
-    public int getPaymentCount() {
-        return paymentCount;
-    }
-
-    public double getMaxPayment() {
-        return maxPayment;
-    }
-
-    public double getMinPayment() {
-        return minPayment;
-    }
-
-    public double getMeanPayment() {
-        return meanPayment;
     }
 
     @Override
     public String toString() {
         return "CalculatorResult{"
                 + "finalPaymentDate: " + finalPaymentDate + ", "
-                + "totalPayments: " + doubleToString(totalPayments) + ", "
-                + "interestPaid: " + doubleToString(interestPaid) + ", "
+                + "totalPayments: $" + doubleToString(totalPayments) + ", "
+                + "interestPaid: $" + doubleToString(interestPaid) + ", "
                 + "paymentCount: " + paymentCount + ", "
-                + "maxPayment: " + doubleToString(maxPayment) + ", "
-                + "minPayment: " + doubleToString(minPayment) + ", "
-                + "meanPayment: " + doubleToString(meanPayment)
+                + "maxPayment: $" + doubleToString(maxPayment) + ", "
+                + "minPayment: $" + doubleToString(minPayment) + ", "
+                + "meanPayment: $" + doubleToString(meanPayment)
                 + "}";
     }
 
     private static String doubleToString(double value) {
-        return String.format("%.2f", value);
+        return DECIMAL_FORMAT.format(value);
     }
 }
